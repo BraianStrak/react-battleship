@@ -1,4 +1,4 @@
-const ShipFactory = (length) => {    
+const ShipFactory = (length, orientation) => {    
     //initialises all positions relative to length, as false, or 'not hit'. 
     const initPositionBools = () => {
         let positions = [];
@@ -8,7 +8,7 @@ const ShipFactory = (length) => {
     };
     let positionBools = initPositionBools();
 
-    //sets the respective position to true, or 'hit' (zero-indexed)
+    //sets the respective position to true, or 'hit' (zero-indexed parameter)
     const hit = (position) => {
         positionBools[position] = true;
     } 
@@ -25,7 +25,7 @@ const ShipFactory = (length) => {
         return true;
     }
 
-    return {hit, isSunk, positionBools, length}
+    return {hit, isSunk, positionBools, length, orientation}
 }
 
 module.exports = ShipFactory;
