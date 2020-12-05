@@ -27,6 +27,9 @@ test('handles hit attack', () => {
 
 test('reports all ships have been sunk', () => {
     let gameBoard4 = GameboardFactory();
+    gameBoard4.placeShip(1, 1, 2, "vertical");
+    gameBoard4.receiveAttack(2, 1);
+    gameBoard4.receiveAttack(1, 1);
 
-
+    expect(gameBoard4.isAllSunk()).toBe(true);
 });

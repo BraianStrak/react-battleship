@@ -61,7 +61,17 @@ const GameboardFactory = () => {
     }
 
     const isAllSunk = () => {
-        
+        if(ships.length > 0){
+            let i = 0;
+
+            for(i = 0; i<ships.length; i++){
+                if(ships[i].isSunk === false){
+                    return false;
+                }
+            }
+
+            return true;
+        }
     }
 
     return {board, missedShotsX, missedShotsY, ships, placeShip, receiveAttack, isAllSunk}
