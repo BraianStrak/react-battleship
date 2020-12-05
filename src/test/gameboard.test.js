@@ -16,6 +16,17 @@ test('handles missed attack', () => {
     expect(gameBoard2.missedShotsX[0]).toBe(5);
 });
 
-test.todo('handles hit attack');
+test('handles hit attack', () => {
+    let gameBoard3 = GameboardFactory();
+    gameBoard3.placeShip(1, 1, 2, "vertical");
+    gameBoard3.receiveAttack(2, 1);
+    gameBoard3.receiveAttack(1, 1);
 
-test.todo('reports all ships have been sunk');
+    expect(gameBoard3.ships[0].isSunk()).toBe(true);
+});
+
+test('reports all ships have been sunk', () => {
+    let gameBoard4 = GameboardFactory();
+
+
+});

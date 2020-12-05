@@ -3,6 +3,8 @@ const ShipFactory = require("./ship");
 const GameboardFactory = () => {   
     let missedShotsX = [];
     let missedShotsY = [];
+    let shipOriginsX = [];
+    let shipOriginsY = [];
     let ships = [];
 
     //board is null if empty, and a number if a ship is on it. 
@@ -17,6 +19,11 @@ const GameboardFactory = () => {
         let ship = ShipFactory(shipLength, shipOrientation);
         ships.push(ship);
 
+        //push the origins of the ship for hit-detection use later
+        shipOriginsY.push(y);
+        shipOriginsX.push(x);
+
+        //populates array with ship data
         let i = 0;
         for(i = 0 ; i < ship.length ; i++) {
             if(ship.orientation === "vertical"){
@@ -30,17 +37,34 @@ const GameboardFactory = () => {
     
     //takes co-ordinates, determines whether it hit a ship, sends hit function if it did. If not it records co-ords of the missed shot. 
     const receiveAttack = (y, x) => {
-        //it might be hard to send the hit function to the correct part of the ship. 
-        //to get that you have to do some checking with the board, I think it should be fine. 
-        //with vertical origin will be the highest point, with horizontal it will be the leftmost point. Use that to determine.
 
+        //if that part does not contain a ship
         if(board[y][x] == null){
+            //add that co-ordinate to missedshots
             missedShotsY.push(y);
             missedShotsX.push(x);
+        } else {
+            //based on where the ship originates 
+            let shipNumber = board[y][x];
+
+            if(ships[shipNumber].orientation === "vertical"){
+                //find the origin index of the ship, then find the difference between the origin and hitpoint, use that information to hit the ship. 
+                let hitVector = y - shipOriginsY[shipNumber]
+                ships[shipNumber].hit(hitVector);
+            } else {
+                //find the origin index of the ship
+                let hitVector = x - shipOriginsX[shipNumber]
+                ships[shipNumber].hit(hitVector);
+            }
+            
         }
     }
 
-    return {board, missedShotsX, missedShotsY, ships, placeShip, receiveAttack}
+    const isAllSunk = () => {
+        
+    }
+
+    return {board, missedShotsX, missedShotsY, ships, placeShip, receiveAttack, isAllSunk}
 }
 
 module.exports = GameboardFactory;
