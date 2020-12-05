@@ -18,7 +18,7 @@ const ShipFactory = (length, orientation) => {
         for(i=0;i<length;i++){
             //if any positions are not hit
             if(positionBools[i] === false){
-                console.log("this part isn't hit");
+                console.log("this part isn't hit: ", i+1);
                 return false;
             }
         }
