@@ -1,6 +1,8 @@
 const ShipFactory = require("./ship");
 
-const GameboardFactory = () => {   
+const GameboardFactory = () => {  
+    let shotsX = [];
+    let shotsY = []; 
     let missedShotsX = [];
     let missedShotsY = [];
     let shipOriginsX = [];
@@ -38,6 +40,9 @@ const GameboardFactory = () => {
     //takes co-ordinates, determines whether it hit a ship, sends hit function if it did. If not it records co-ords of the missed shot. 
     const receiveAttack = (y, x) => {
 
+        shotsX.push(x);
+        shotsY.push(y);
+
         //if that part does not contain a ship
         if(board[y][x] == null){
             //add that co-ordinate to missedshots
@@ -74,7 +79,7 @@ const GameboardFactory = () => {
         }
     }
 
-    return {board, missedShotsX, missedShotsY, ships, placeShip, receiveAttack, isAllSunk}
+    return {board, shotsX, shotsY, missedShotsX, missedShotsY, ships, placeShip, receiveAttack, isAllSunk}
 }
 
 module.exports = GameboardFactory;
