@@ -1,0 +1,15 @@
+.gameboard {
+    display:flex;
+    flex-wrap: wrap;
+
+    width:500px;
+    height:500px;
+}
+
+.gameboard-element {
+    flex-basis:10%;
+
+    border: 1px solid black;
+}
+
+

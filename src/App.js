@@ -1,4 +1,5 @@
 import GameboardView from "./components/GameboardView"
+import "./stylesheets/styles.css"
 
 function App() {
 

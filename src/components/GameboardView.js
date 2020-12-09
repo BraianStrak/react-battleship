@@ -7,28 +7,20 @@ const GameboardView = (props) => {
 
     const [gameboard] = useState(GameboardFactory());
 
-    const renderBoard = () => {
-        gameboard.board.map((value) => 
-            value.map((element) => <div>element</div>)
-        );
-    }
-
     //on render
     useEffect(() => {
 
     });
 
     return (
-        <div>
-             <ul>
-                {Object.keys(gameboard.board).map(keyOuter => {
-                    return Object.keys(gameboard.board[keyOuter]).map(keyInner => {
-                        return (
-                            <li> hi </li>
-                        );
-                    });
-                })}
-            </ul>
+        <div className="gameboard align-self-center">
+            {Object.keys(gameboard.board).map(keyOuter => {
+                return Object.keys(gameboard.board[keyOuter]).map((keyInner, counter) => {
+                    return (
+                        <div className = "gameboard-element"> {counter} </div>
+                    );
+                });
+            })}
         </div>
     );
 }
