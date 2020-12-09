@@ -1,6 +1,5 @@
 import GameboardView from "./components/GameboardView"
 
-
 function App() {
 
 

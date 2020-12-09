@@ -5,13 +5,12 @@ import {GameboardFactory} from "../module/gameboard";
 
 const GameboardView = (props) => {
 
+    const [gameboard] = useState(GameboardFactory());
 
     const renderBoard = () => {
-        let gameboard = GameboardFactory();
-
-        return gameboard.board.map((line) => 
-            line.map((element) => <div>element</div>
-        ));
+        gameboard.board.map((value) => 
+            value.map((element) => <div>element</div>)
+        );
     }
 
     //on render
@@ -21,7 +20,15 @@ const GameboardView = (props) => {
 
     return (
         <div>
-            {renderBoard()}
+             <ul>
+                {Object.keys(gameboard.board).map(keyOuter => {
+                    return Object.keys(gameboard.board[keyOuter]).map(keyInner => {
+                        return (
+                            <li> hi </li>
+                        );
+                    });
+                })}
+            </ul>
         </div>
     );
 }

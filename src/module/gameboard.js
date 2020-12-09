@@ -82,4 +82,4 @@ const GameboardFactory = () => {
     return {board, shotsX, shotsY, missedShotsX, missedShotsY, ships, placeShip, receiveAttack, isAllSunk}
 }
 
-module.exports = GameboardFactory;
+export {GameboardFactory};
