@@ -24,3 +24,5 @@ const PlayerFactory = () => {
 
     return {};
 }
+
+export {PlayerFactory};
