@@ -30,26 +30,23 @@ const GameboardView = (props) => {
 
     //determine which colour tile to render based on state
     const determineTileClassName = (tileContents, tileY, tileX) => {
-        //in order to fix it, I need to treat both arrays as co-ordinate pairs rather than check the entire array
-        //lets make it a 2d array for both, that will be easiest tbh, no manual conversion necessary
 
-        
+        //check co-ordinate pairs to determine what type of tile to return 
+        let i = 0;
+        for(i=0;i<props.gameboard.shots.length;i++){
+            try {
+                if( (props.gameboard.shots[i][0] === tileY && props.gameboard.shots[i][1] === tileX) 
+                    && !(props.gameboard.missedShots[i][0] === tileY && props.gameboard.missedShots[i][1] === tileX)){
+                    return "destroyed-gameboard-element";
+                } else if (props.gameboard.missedShots[i][0] === tileY && props.gameboard.missedShots[i][1] === tileX) {
+                    return "missed-gameboard-element";
+                }
+            } catch {}
 
-        /*
-        //if it has been shot and not missed (aka hit) RENDERS EXTRA ONES if there is one diagonal to it
-        if ( (props.gameboard.shotsX.includes(tileX) && props.gameboard.shotsY.includes(tileY)) 
-            && !(props.gameboard.missedShotsX.includes(tileX) && props.gameboard.missedShotsY.includes(tileY)) ) {
-            
-            return "destroyed-gameboard-element";
-        
-        //if it has been shot and missed RENDERS EXTRA ONES
-        } else if (props.gameboard.missedShotsX.includes(tileX) && props.gameboard.missedShotsY.includes(tileY)){
-            
-            return "missed-gameboard-element";
-
-        } else {
-            return "gameboard-element";
-        }*/
+        }
+       
+        //if all else fails
+        return "gameboard-element";
     }
 
     
