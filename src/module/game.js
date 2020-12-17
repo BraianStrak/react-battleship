@@ -9,6 +9,10 @@ const GameFactory = () => {
         board.placeShip(1, 1, 3, "vertical");
         board.placeShip(5, 5, 2, "horizontal");
 
+        board.receiveAttack(5, 5);
+        board.receiveAttack(4, 5);
+        board.receiveAttack(9,9);
+
         return board;
     }
 

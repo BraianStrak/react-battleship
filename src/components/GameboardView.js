@@ -18,7 +18,7 @@ const GameboardView = (props) => {
                 return (
 
                     //<button className = "gameboard-element"
-                    <button className = {determineTileClassName(gameboard.board[outerCounter][innerCounter], keyOuter, keyInner)}
+                    <button className = {determineTileClassName(gameboard.board[outerCounter][innerCounter], outerCounter, innerCounter)}
                      id={outerCounter.toString() + innerCounter.toString()} 
                      key={outerCounter.toString() + innerCounter.toString()}
                      onClick={(e) => handleClick(e.target.id)} >
@@ -30,23 +30,26 @@ const GameboardView = (props) => {
 
     //determine which colour tile to render based on state
     const determineTileClassName = (tileContents, tileY, tileX) => {
-        const shipNumber = props.gameboard.board[tileY][tileX];
+        //in order to fix it, I need to treat both arrays as co-ordinate pairs rather than check the entire array
+        //lets make it a 2d array for both, that will be easiest tbh, no manual conversion necessary
 
-        //if its empty or has not been shot
-        if(tileContents === null || !(props.gameboard.shotsX.includes(tileX) && props.gameboard.shotsX.includes(tileY)) ) {
-            return "gameboard-element"
+        
 
-        //if it has been shot and not missed    
-        } else if ( (props.gameboard.shotsX.includes(tileX) && props.gameboard.shotsX.includes(tileY)) 
-            && !(props.gameboard.missedShotsX.includes(tileX) && props.gameboard.missedShotsX.includes(tileY)) ) {
+        /*
+        //if it has been shot and not missed (aka hit) RENDERS EXTRA ONES if there is one diagonal to it
+        if ( (props.gameboard.shotsX.includes(tileX) && props.gameboard.shotsY.includes(tileY)) 
+            && !(props.gameboard.missedShotsX.includes(tileX) && props.gameboard.missedShotsY.includes(tileY)) ) {
             
             return "destroyed-gameboard-element";
-        //if it has been shot and missed
-        } else if ( (props.gameboard.shotsX.includes(tileX) && props.gameboard.shotsX.includes(tileY)) 
-            && (props.gameboard.missedShotsX.includes(tileX) && props.gameboard.missedShotsX.includes(tileY)) )  {
+        
+        //if it has been shot and missed RENDERS EXTRA ONES
+        } else if (props.gameboard.missedShotsX.includes(tileX) && props.gameboard.missedShotsY.includes(tileY)){
             
             return "missed-gameboard-element";
-        }
+
+        } else {
+            return "gameboard-element";
+        }*/
     }
 
     
