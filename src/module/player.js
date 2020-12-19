@@ -14,6 +14,7 @@ const PlayerFactory = () => {
         let yVector = 0;
         
         //get random numbers until you get a pair which wasn't attacked
+        
         while(gameboard.shotsX.includes(xVector) && gameboard.shotsY.includes(yVector)){
             xVector = getRandomNumber(10);
             yVector = getRandomNumber(10);
@@ -22,7 +23,7 @@ const PlayerFactory = () => {
         gameboard.receiveAttack(yVector, xVector);
     }
 
-    return {};
+    return {makeRandomAttack, attack};
 }
 
 export {PlayerFactory};

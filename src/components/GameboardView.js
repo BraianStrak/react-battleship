@@ -3,8 +3,7 @@
 import React, {useEffect, useState} from "react";
 import {GameboardFactory} from "../module/gameboard";
 
-const GameboardView = (props) => {
-    
+const GameboardView = (props) => {    
     //on render
     useEffect(() => {
 
@@ -42,7 +41,6 @@ const GameboardView = (props) => {
                     return "missed-gameboard-element";
                 }
             } catch {}
-
         }
        
         //if all else fails
@@ -54,9 +52,18 @@ const GameboardView = (props) => {
     const handleClick = (e) => {
         console.log(e);
 
+        let attackPoint = e.split("");
+
+        let yAttackPoint = parseInt(attackPoint[0]);
+        let xAttackPoint = parseInt(attackPoint[1]);
+
+        props.handleGameLoop(yAttackPoint, xAttackPoint);        
+
+        //split up into y and x, then call handlegameloop
+
         //handle the turn here based on ID
         //check if ship, if ship, change tiles, add to shots accordingly 
-        //might be good to have this method in the parent tbh
+        //might be good to have this method in the parent tbh, and just pass the onclick ID to it!!
     }
 
     return (

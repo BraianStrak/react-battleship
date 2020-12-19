@@ -8,7 +8,14 @@ import { GameboardFactory } from "./module/gameboard";
 function App() {
   const [game] = useState(GameFactory());
 
+  const [moveCounter, addToCounter] = useState([]);
+
   //pass the game thing as a prop to gameboard
+
+  const handleGameLoop = (y, x) => {
+    game.handleGameLoop(y, x);
+    addToCounter(moveCounter+1);
+  }
 
   return (
     <div className="container-fluid">
@@ -24,7 +31,7 @@ function App() {
         <div className="col">
           <h2 className = "text-center">AI</h2>
           <div className="row justify-content-center">
-            <GameboardView gameboard = {game.aiBoard}/>
+            <GameboardView gameboard = {game.aiBoard} handleGameLoop = {handleGameLoop}/>
           </div>
         </div>
       </div>

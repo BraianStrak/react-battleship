@@ -24,16 +24,25 @@ const GameFactory = () => {
         return board;
     }
 
+    const handleGameLoop = (y, x) => {
+        aiBoard.receiveAttack(y, x);
+        aiPlayer.makeRandomAttack(playerBoard);
+
+        //also have to handle wins/losses
+    }
+
     let playerBoard = createPlayerBoard();
     let aiBoard = createAiBoard();
 
     let humanPlayer = PlayerFactory();
     let aiPlayer = PlayerFactory();
 
+
+
     //maybe make this dynamically react to changes? idk, or maybe dynamically render based on the state. 
     //so after each click it changes state of the boards and it fetches the board and renders based on their values? 
 
-    return {playerBoard, aiBoard, humanPlayer, aiPlayer}
+    return {playerBoard, aiBoard, humanPlayer, aiPlayer, handleGameLoop}
 }
 
 export default GameFactory;
