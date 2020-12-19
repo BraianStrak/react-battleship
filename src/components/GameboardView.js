@@ -15,7 +15,6 @@ const GameboardView = (props) => {
         return Object.keys(gameboard.board).map((keyOuter, outerCounter) => {
             return Object.keys(gameboard.board[keyOuter]).map((keyInner, innerCounter) => {
                 return (
-
                     //<button className = "gameboard-element"
                     <button className = {determineTileClassName(gameboard.board[outerCounter][innerCounter], outerCounter, innerCounter)}
                      id={outerCounter.toString() + innerCounter.toString()} 

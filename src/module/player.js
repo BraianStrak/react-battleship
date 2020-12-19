@@ -10,17 +10,29 @@ const PlayerFactory = () => {
     }
 
     const makeRandomAttack = (gameboard) => {
-        let xVector = 0;
-        let yVector = 0;
-        
+        let xVector = getRandomNumber(10);
+        let yVector = getRandomNumber(10);
         //get random numbers until you get a pair which wasn't attacked
         
-        while(gameboard.shotsX.includes(xVector) && gameboard.shotsY.includes(yVector)){
+
+        while(determineIf2DArrayIncludesValue(yVector, xVector, gameboard.shots) === true){
             xVector = getRandomNumber(10);
-            yVector = getRandomNumber(10);
+            yVector = getRandomNumber(10);   
         }
 
         gameboard.receiveAttack(yVector, xVector);
+    }
+
+    //returns true if the 2D shots array includes the values
+    const determineIf2DArrayIncludesValue = (y, x, array) => {
+        let i = 0;
+        for(i=0;i<array.length;i++){
+            if(array[i][0] === y && array[i][1] === x) {
+                return true;
+            }  
+        }
+
+        return false;
     }
 
     return {makeRandomAttack, attack};
