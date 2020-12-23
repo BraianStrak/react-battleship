@@ -13,8 +13,7 @@ const PlayerFactory = () => {
         let xVector = getRandomNumber(10);
         let yVector = getRandomNumber(10);
         //get random numbers until you get a pair which wasn't attacked
-        
-
+    
         while(determineIf2DArrayIncludesValue(yVector, xVector, gameboard.shots) === true){
             xVector = getRandomNumber(10);
             yVector = getRandomNumber(10);   

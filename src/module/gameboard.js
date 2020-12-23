@@ -13,6 +13,7 @@ const GameboardFactory = () => {
     let board = Array(10).fill(null).map(() => Array(10).fill(null));
     let missedShots = [];
     let shots = [];
+    let hitShots = [];
 
     //place ships at specific co-ordinates by calling the ship factory function
     //report whether or not all ships have been sunk. 
@@ -52,6 +53,8 @@ const GameboardFactory = () => {
             missedShotsX.push(x);
             missedShots.push([y, x]);
         } else {
+            //push to hitShots so that it can be drawn
+            hitShots.push([y, x]);
             //based on where the ship originates 
             let shipNumber = board[y][x];
 
@@ -66,6 +69,7 @@ const GameboardFactory = () => {
             }
             
         }
+
     }
 
     const isAllSunk = () => {
@@ -82,7 +86,7 @@ const GameboardFactory = () => {
         }
     }
 
-    return {board, shots, shotsX, shotsY, missedShots, missedShotsX, missedShotsY, ships, placeShip, receiveAttack, isAllSunk}
+    return {board, shots, shotsX, shotsY, missedShots, missedShotsX, missedShotsY, ships, hitShots,placeShip, receiveAttack, isAllSunk}
 }
 
 export {GameboardFactory};

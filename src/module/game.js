@@ -9,10 +9,6 @@ const GameFactory = () => {
         board.placeShip(1, 1, 3, "vertical");
         board.placeShip(5, 5, 2, "horizontal");
 
-        board.receiveAttack(5, 5);
-        board.receiveAttack(4, 5);
-        board.receiveAttack(9,9);
-
         return board;
     }
 
@@ -29,6 +25,11 @@ const GameFactory = () => {
         aiPlayer.makeRandomAttack(playerBoard);
 
         //also have to handle wins/losses
+        if(aiBoard.isAllSunk()){
+            alert("Game has finished, Player wins");
+        } else if (playerBoard.isAllSunk()){
+            alert("Game has finished, AI wins");
+        }
     }
 
     let playerBoard = createPlayerBoard();

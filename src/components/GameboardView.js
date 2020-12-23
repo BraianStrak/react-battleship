@@ -31,17 +31,28 @@ const GameboardView = (props) => {
 
         //check co-ordinate pairs to determine what type of tile to return 
         let i = 0;
-        for(i=0;i<props.gameboard.shots.length;i++){
+        /*for(i=0;i<props.gameboard.shots.length;i++){
             try {
-                if( (props.gameboard.shots[i][0] === tileY && props.gameboard.shots[i][1] === tileX) 
+                if( (props.gameboard.shots[i][0] === tileY && props.gameboard.shots[i][1] === tileX)
                     && !(props.gameboard.missedShots[i][0] === tileY && props.gameboard.missedShots[i][1] === tileX)){
                     return "destroyed-gameboard-element";
                 } else if (props.gameboard.missedShots[i][0] === tileY && props.gameboard.missedShots[i][1] === tileX) {
                     return "missed-gameboard-element";
                 }
             } catch {}
+        }*/
+
+        for(i=0;i<props.gameboard.shots.length;i++){
+            try {
+                 if (props.gameboard.missedShots[i][0] === tileY && props.gameboard.missedShots[i][1] === tileX) {
+                    return "missed-gameboard-element";
+                } else if( (props.gameboard.shots[i][0] === tileY && props.gameboard.shots[i][1] === tileX)
+                && !(props.gameboard.missedShots[i][0] === tileY && props.gameboard.missedShots[i][1] === tileX)){
+                return "destroyed-gameboard-element";
+            }
+            } catch {}
         }
-       
+    
         //if all else fails
         return "gameboard-element";
     }
